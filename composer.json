@@ -1,8 +1,8 @@
 {
   "name": "mediarox/module-checkout-street-number",
-  "description": "Adds a new street number field to all first address fields.",
+  "description": "Divides the first street line into street & house number.",
   "type": "magento2-module",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": [
     "MIT"
   ],
