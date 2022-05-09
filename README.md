@@ -1,7 +1,7 @@
 # Checkout street number
 
 ## Description
-Adds a new street number field to the first address field.
+Adds a house number field to the checkout.
 
 ## Installation
 ```bash
