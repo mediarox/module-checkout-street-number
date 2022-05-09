@@ -37,7 +37,10 @@ class StreetNumberProcessor implements LayoutProcessorInterface
     public const KEY_CONFIG = 'config';
     public const KEY_TEMPLATE = 'template';
     public const KEY_DATA_SCOPE = 'dataScope';
+    public const KEY_DATA_SCOPE_PREFIX = 'dataScopePrefix';
     public const KEY_CUSTOM_SCOPE = 'customScope';
+    public const KEY_CHILDREN = 'children';
+    public const KEY_ADDITIONAL_CLASSES = 'additionalClasses';
 
     public const FIELD_COMPONENT_PREFIX = 'Mediarox_CheckoutAddressStreetNumber/js/form/element/';
     public const FIELD_DEFAULT_TEMPLATE = 'ui/form/field';
@@ -54,10 +57,13 @@ class StreetNumberProcessor implements LayoutProcessorInterface
     public const LABEL_STREET_MAIN = 'Street';
     public const LABEL_STREET_NUMBER = 'Street Number';
 
+    public const CSS_CLASS_HIDE_STREET_FIELDSET = 'hide-street-fieldset';
+
     public const COMPONENT_STREET_MAIN = self::FIELD_COMPONENT_PREFIX . self::KEY_STREET . '-' . self::KEY_MAIN;
     public const COMPONENT_STREET_NUMBER = self::FIELD_COMPONENT_PREFIX . self::KEY_STREET . '-' . self::KEY_NUMBER;
 
     public const STREET_PATH = ArrayManager::DEFAULT_PATH_DELIMITER . self::KEY_STREET;
+    public const DATA_SCOPE_ADDRESS_SHIPPING = 'shippingAddress';
 
     public const ADDITIONAL_FIELDS = [
         self::KEY_STREET_MAIN => [
@@ -96,7 +102,6 @@ class StreetNumberProcessor implements LayoutProcessorInterface
     ];
 
     public const BILLING_REMOVE_PATH = '/children/form-fields/children';
-
 
     protected ArrayManager $arrayManager;
     protected Config $config;
@@ -137,12 +142,12 @@ class StreetNumberProcessor implements LayoutProcessorInterface
                 $billingFieldset = $this->arrayManager->get($path, $jsLayout);
                 $billingControl = $this->arrayManager->get($this->removeFromStringEnd($path, self::BILLING_REMOVE_PATH),
                     $jsLayout);
-                if ($dataScope = $billingControl['dataScopePrefix'] ?? false) {
+                if ($dataScope = $billingControl[self::KEY_DATA_SCOPE_PREFIX] ?? false) {
                     yield $dataScope => $billingFieldset;
                 }
                 break;
             case self::ADDRESS_TYPE_SHIPPING:
-                yield 'shippingAddress' => $this->arrayManager->get($path, $jsLayout);
+                yield self::DATA_SCOPE_ADDRESS_SHIPPING => $this->arrayManager->get($path, $jsLayout);
                 break;
             default:
                 break;
@@ -181,10 +186,18 @@ class StreetNumberProcessor implements LayoutProcessorInterface
         if ($fieldLabel = $fieldData[self::KEY_LABEL] ?? false) {
             $fieldData[self::KEY_LABEL] = __($fieldLabel);
         }
+        if ($this->hasOnlyOneChild($addressFieldset[self::KEY_STREET][self::KEY_CHILDREN])) {
+            $fieldData[self::KEY_ADDITIONAL_CLASSES] = self::CSS_CLASS_HIDE_STREET_FIELDSET;
+        }
         $addressFieldset[$fieldName] = $fieldData;
         return $addressFieldset;
     }
-    
+
+    private function hasOnlyOneChild(array $children): bool
+    {
+        return 1 === (int)count($children);
+    }
+
     private function getSortOrder(array $fieldData, array $addressFieldset): int
     {
         $dependsOn = $fieldData[self::KEY_SORT_ORDER_DEPENDS_ON] ?? self::FIELD_DEFAULT_SORT_ORDER_DEPENDS_ON;
