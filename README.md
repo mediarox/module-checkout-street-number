@@ -11,8 +11,8 @@ bin/magento setup:upgrade
 
 #### Before
 
-![without_extension](https://user-images.githubusercontent.com/32567473/144977948-00406294-dbf6-4951-9de9-e21c0fc8abc8.jpg)
+![without_extension](https://user-images.githubusercontent.com/32567473/167380501-85011930-86fe-4a73-a86c-9567c9c92cd2.png)
 
 #### After
 
-![with_extension](https://user-images.githubusercontent.com/32567473/144977092-26bc5720-49cd-4b7f-9a0f-c1329cb99322.jpg)
+![with_extension](https://user-images.githubusercontent.com/32567473/167380518-b9fd92a0-6074-48a9-8ae9-ed9f5f36100a.png)
