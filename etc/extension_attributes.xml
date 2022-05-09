@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright 2022 (c) mediarox UG (haftungsbeschraenkt) (http://www.mediarox.de)
+ * See LICENSE for license details.
+ */
+-->
+<config>
+    <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
+        <attribute code="street_main" type="string"/>
+        <attribute code="street_number" type="string"/>
+    </extension_attributes>
+</config>
