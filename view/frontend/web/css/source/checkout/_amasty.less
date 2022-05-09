@@ -1,0 +1,29 @@
+// /**
+//  * Copyright 2022 (c) mediarox UG (haftungsbeschraenkt) (http://www.mediarox.de)
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout__street-main__width: 70%;
+@checkout__street-number__width: 30%;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    & when (@checkout__hide__origin__street__line = true) {
+
+        // set street & house number on one line
+        .checkout-index-index .amcheckout-main-container div.field[name$='.street_main'] {
+            width: @checkout__street-main__width !important;
+        }
+        .checkout-index-index .amcheckout-main-container div.field[name$='.street_number'] {
+            width: @checkout__street-number__width !important;
+        }
+    }
+}

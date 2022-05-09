@@ -3,13 +3,6 @@
 //  * See COPYING.txt for license details.
 //  */
 
-//
-//  Variables
-//  _____________________________________________
-
-@checkout__hide__origin__street__line: true;
-@checkout__street-main__width: 70%;
-@checkout__street-number__width: 30%;
 
 //
 //  Common
@@ -18,17 +11,20 @@
 & when (@media-common = true) {
     
     & when (@checkout__hide__origin__street__line = true) {
+
+        // hide first street line if .street_number is visible
         .checkout-index-index div.field[name$='.street_number'] + fieldset.field.street div.field[name$='.street.0'] {
             .lib-css(display, none);
         }
+        
+        // hide complete street fieldset if street lines limited to "1" (trigger: .hide-street-fieldset; prevent margins bugs)
+        .checkout-index-index .hide-street-fieldset ~ fieldset.street {
+            .lib-css(display, none);
+        }
+        
+        // remove margin top from second street line to equalize the margin's
         .checkout-index-index div.field[name$='.street_number'] + fieldset.field.street div.field[name$='.street.1'] {
             .lib-css(margin-top, 0);
-        }
-        .checkout-index-index .amcheckout-main-container div.field[name$='.street_main'] {
-            width: @checkout__street-main__width !important;
-        }
-        .checkout-index-index .amcheckout-main-container div.field[name$='.street_number'] {
-            width: @checkout__street-number__width !important;
         }
     }
 }
