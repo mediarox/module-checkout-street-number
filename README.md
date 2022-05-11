@@ -35,7 +35,7 @@ bin/magento config:set checkout_street_number/general/enable 1
 * [amasty/module-single-step-checkout](https://amasty.com/one-step-checkout-for-magento-2.html), tested: 3.1.3, 4.0.0
 * [mediarox/module-checkout-placeholder](https://github.com/mediarox/module-checkout-placeholder), tested: 0.4.2
 
-## Notes for developers
+## Notes
 ### General
 The extension was created from various live projects with themes based on Luma. It is to be considered as "beta" and does not claim to be perfect. The main reason of the release is to share this module with others and improve it together.
 ### Helpful posts on the topic

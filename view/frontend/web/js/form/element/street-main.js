@@ -4,37 +4,24 @@
  */
 
 define([
-    'underscore',
-    'Magento_Ui/js/form/element/abstract'
-], function (_, Abstract) {
+    'Magento_Ui/js/form/element/abstract',
+    'underscore'
+], function (Abstract, _) {
     'use strict';
 
     return Abstract.extend({
         defaults: {
             modules: {
-                street: '${ $.parentName }.street'
+                originFirstStreetLine: '${ $.parentName }.street.0'
             },
             imports: {
-                streetNumberIsChanged: '${ $.parentName }.street_number:value',
+                updateFirstStreetLine: '${ $.parentName }.street_number:value',
                 streetNumber: '${ $.parentName }.street_number:value'
             }
         },
-
-        /**
-         * Method called every time street_number value gets changed.
-         * @param {String} streetNumber - new street number.
-         */
-        streetNumberIsChanged: function (streetNumber) {
-            this.updateFirstStreetLine(streetNumber);
-        },
         
         updateFirstStreetLine: function (streetNumber) {
-            this.street().elems.each(function (street, key) {
-                let isFirstLine = key === 0;
-                if(isFirstLine) {
-                    this.street().elems()[key].value(this.value() + ' ' + streetNumber);
-                }
-            }.bind(this));
+            this.originFirstStreetLine().value(this.value() + ' ' + streetNumber);
         },
 
         /**
@@ -45,7 +32,7 @@ define([
          */
         hasChanged: function () {
             var notEqual = this.value() !== this.initialValue;
-            
+
             if(notEqual) {
                 this.updateFirstStreetLine(this.streetNumber);
             }
