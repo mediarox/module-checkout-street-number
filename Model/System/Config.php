@@ -25,7 +25,7 @@ class Config implements ConfigInterface
         $this->json = $json;
     }
 
-    public function getConfigValue(string $key, string $basePath = self::SYSTEM_CONFIG_BASE_PATH_ADDRESS)
+    public function getConfigValue(string $key, string $basePath = self::SYSTEM_CONFIG_BASE_PATH)
     {
         return $this->scopeConfig->getValue(
             $basePath . $key,

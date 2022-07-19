@@ -21,7 +21,7 @@ SHOPS > Configuration > MEDIAROX > Checkout Street Number
 
 ### Shell
 ```bash
-bin/magento config:set customer/address/split_street_into_name_and_number 1
+bin/magento config:set checkout/options/split_street_into_name_and_number 1
 ```
 
 ## Before
