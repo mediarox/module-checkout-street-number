@@ -8,17 +8,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="mediarox">
-            <label>Mediarox</label>
-        </tab>
-        <section id="checkout_street_number" showInDefault="1" showInWebsite="1" showInStore="1">
-            <tab>mediarox</tab>
-            <resource>Mediarox_CheckoutAddressStreetNumber::config</resource>
-            <label>Checkout Street Number</label>
-            <group id="general" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
-                <label>General</label>
-                <field id="enable" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="select">
-                    <label>Enable</label>
+        <section id="customer" showInDefault="1" showInWebsite="1" showInStore="1">
+            <tab>customer</tab>
+            <resource>Magento_Customer::config_customer</resource>
+            <group id="address">
+                <field id="split_street_into_name_and_number" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="select">
+                    <label>Split the street into name and number</label>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                 </field>
             </group>
