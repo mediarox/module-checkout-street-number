@@ -21,19 +21,21 @@ define([
         },
         
         updateFirstStreetLine: function (streetNumber) {
-            this.originFirstStreetLine().value(this.value() + ' ' + streetNumber);
+            if ('' !== this.value()) {
+                this.originFirstStreetLine().value(this.value() + ' ' + streetNumber);
+            }
         },
 
         /**
          * Defines if value has changed.
-         * 
+         *
          * @override
          * @returns {Boolean}
          */
         hasChanged: function () {
             var notEqual = this.value() !== this.initialValue;
 
-            if(notEqual) {
+            if (notEqual) {
                 this.updateFirstStreetLine(this.streetNumber);
             }
             return !this.visible() ? false : notEqual;
