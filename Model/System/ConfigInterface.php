@@ -9,6 +9,6 @@ namespace Mediarox\CheckoutAddressStreetNumber\Model\System;
 
 interface ConfigInterface
 {
-    const SYSTEM_CONFIG_BASE_PATH_GENERAL = 'checkout_street_number/general/';
-    const SYSTEM_CONFIG_KEY_ENABLE = 'enable';
+    const SYSTEM_CONFIG_BASE_PATH = 'checkout/options/';
+    const SYSTEM_CONFIG_KEY_ENABLE = 'split_street_into_name_and_number';
 }
