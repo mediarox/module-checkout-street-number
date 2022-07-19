@@ -17,7 +17,7 @@ bin/magento setup:upgrade
 ## Configuration
 
 ### Backend
-SHOPS > Configuration > MEDIAROX > Checkout Street Number
+STORES > (Settings) Configuration > SALES > Checkout > Checkout Options
 
 ### Shell
 ```bash
