@@ -122,11 +122,18 @@ class StreetNumberProcessor implements LayoutProcessorInterface
         foreach ($this->arrayManager->findPaths(self::KEY_STREET, $jsLayout) as $streetPath) {
             $addressFieldsetPath = $this->removeFromStringEnd($streetPath, self::STREET_PATH);
             foreach ($this->detectAddressType($addressFieldsetPath) as $type) {
-                foreach ($this->detectDataScope($addressFieldsetPath, $type,
-                    $jsLayout) as $dataScope => $addressFieldset) {
+                foreach ($this->detectDataScope(
+                    $addressFieldsetPath,
+                    $type,
+                    $jsLayout
+                ) as $dataScope => $addressFieldset) {
                     foreach (self::ADDITIONAL_FIELDS as $fieldName => $fieldData) {
-                        $addressFieldset = $this->addFieldToFieldset($fieldName, $fieldData, $addressFieldset,
-                            $dataScope);
+                        $addressFieldset = $this->addFieldToFieldset(
+                            $fieldName,
+                            $fieldData,
+                            $addressFieldset,
+                            $dataScope
+                        );
                     }
                     $jsLayout = $this->arrayManager->merge($addressFieldsetPath, $jsLayout, $addressFieldset);
                 }
@@ -140,8 +147,10 @@ class StreetNumberProcessor implements LayoutProcessorInterface
         switch ($type) {
             case self::ADDRESS_TYPE_BILLING:
                 $billingFieldset = $this->arrayManager->get($path, $jsLayout);
-                $billingControl = $this->arrayManager->get($this->removeFromStringEnd($path, self::BILLING_REMOVE_PATH),
-                    $jsLayout);
+                $billingControl = $this->arrayManager->get(
+                    $this->removeFromStringEnd($path, self::BILLING_REMOVE_PATH),
+                    $jsLayout
+                );
                 if ($dataScope = $billingControl[self::KEY_DATA_SCOPE_PREFIX] ?? false) {
                     yield $dataScope => $billingFieldset;
                 }
