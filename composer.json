@@ -2,7 +2,7 @@
   "name": "mediarox/module-checkout-street-number",
   "description": "Divides the first street line into street & house number.",
   "type": "magento2-module",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": [
     "MIT"
   ],
