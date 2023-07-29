@@ -9,6 +9,8 @@ namespace Mediarox\CheckoutAddressStreetNumber\Block\Checkout\Onepage;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Quote\Api\Data\CartInterface;
+use Magento\Framework\App\RequestInterface;
 use Mediarox\CheckoutAddressStreetNumber\Model\System\Config;
 
 class StreetNumberProcessor implements LayoutProcessorInterface
@@ -105,13 +107,16 @@ class StreetNumberProcessor implements LayoutProcessorInterface
 
     protected ArrayManager $arrayManager;
     protected Config $config;
+    protected RequestInterface $request;
 
     public function __construct(
         ArrayManager $arrayManager,
-        Config $config
+        Config $config,
+        RequestInterface $request
     ) {
         $this->arrayManager = $arrayManager;
         $this->config = $config;
+        $this->request = $request;
     }
 
     /**
@@ -225,6 +230,7 @@ class StreetNumberProcessor implements LayoutProcessorInterface
      */
     public function process($jsLayout)
     {
-        return $this->config->getEnable() ? $this->injectAdditionalStreetFields($jsLayout) : $jsLayout;
+        $isAmazon = !empty($this->request->getParam('amazonCheckoutSessionId'));
+        return ($this->config->getEnable() && !$isAmazon) ? $this->injectAdditionalStreetFields($jsLayout) : $jsLayout;
     }
 }
