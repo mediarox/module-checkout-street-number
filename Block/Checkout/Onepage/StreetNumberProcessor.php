@@ -143,6 +143,20 @@ class StreetNumberProcessor implements LayoutProcessorInterface
                     $jsLayout = $this->arrayManager->merge($addressFieldsetPath, $jsLayout, $addressFieldset);
                 }
             }
+            $jsLayout = $this->customizeStreetLine2($jsLayout, $streetPath);
+        }
+        return $jsLayout;
+    }
+
+    private function customizeStreetLine2(array $jsLayout, string $streetPath): array
+    {
+        $line2Path = $streetPath . '/children/1';
+        $line2 = $this->arrayManager->get($line2Path, $jsLayout);
+        if ($line2) {
+            $line2['label'] = __('Address addition (optional)');
+            $line2['config']['placeholder'] = __('Address addition (optional)');
+            $line2['placeholder'] = __('Address addition (optional)');
+            $jsLayout = $this->arrayManager->set($line2Path, $jsLayout, $line2);
         }
         return $jsLayout;
     }
