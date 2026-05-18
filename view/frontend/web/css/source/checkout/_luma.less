@@ -14,17 +14,17 @@
 
         // hide first street line if .street_number is visible
         .checkout-index-index div.field[name$='.street_number'] + fieldset.field.street div.field[name$='.street.0'] {
-            .lib-css(display, none);
+            display: none;
         }
         
         // hide complete street fieldset if street lines limited to "1" (trigger: .hide-street-fieldset; prevent margins bugs)
         .checkout-index-index .hide-street-fieldset ~ fieldset.street {
-            .lib-css(display, none);
+            display: none;
         }
         
         // remove margin top from second street line to equalize the margin's
         .checkout-index-index div.field[name$='.street_number'] + fieldset.field.street div.field[name$='.street.1'] {
-            .lib-css(margin-top, 0);
+            margin-top: 0;
         }
     }
 }

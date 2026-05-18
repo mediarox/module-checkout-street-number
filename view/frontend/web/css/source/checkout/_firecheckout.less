@@ -1,0 +1,37 @@
+// /**
+//  * Copyright 2022 (c) mediarox UG (haftungsbeschraenkt) (http://www.mediarox.de)
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    & when (@checkout__hide__origin__street__line = true) {
+
+        // hide first street line if .street_number is visible
+        .firecheckout div.field[name$='.street_number'] + fieldset.field.street div.field[name$='.street.0'] {
+            display: none !important;
+        }
+
+        // hide complete street fieldset if street lines limited to "1" (trigger: .hide-street-fieldset; prevent margins bugs)
+        .firecheckout .hide-street-fieldset ~ fieldset.street {
+            display: none !important;
+        }
+
+        // remove margin top from second street line to equalize the margin's
+        .firecheckout div.field[name$='.street_number'] + fieldset.field.street div.field[name$='.street.1'] {
+            margin-top: 0;
+        }
+
+        // set street & house number on one line
+        .firecheckout div.field[name$='.street_main'] {
+            width: @checkout__street-main__width !important;
+        }
+        .firecheckout div.field[name$='.street_number'] {
+            width: @checkout__street-number__width !important;
+        }
+    }
+}
