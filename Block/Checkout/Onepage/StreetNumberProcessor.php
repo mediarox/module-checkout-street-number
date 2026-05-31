@@ -67,23 +67,30 @@ class StreetNumberProcessor implements LayoutProcessorInterface
     public const STREET_PATH = ArrayManager::DEFAULT_PATH_DELIMITER . self::KEY_STREET;
     public const DATA_SCOPE_ADDRESS_SHIPPING = 'shippingAddress';
 
+    public const KEY_AUTOCOMPLETE = 'autocomplete';
+
     public const ADDITIONAL_FIELDS = [
         self::KEY_STREET_MAIN => [
             self::KEY_LABEL => self::LABEL_STREET_MAIN,
             self::KEY_COMPONENT => self::COMPONENT_STREET_MAIN,
-            self::KEY_SORT_ORDER_STEP_SIZE => 2
+            self::KEY_SORT_ORDER_STEP_SIZE => 2,
+            self::KEY_AUTOCOMPLETE => 'address-line1'
         ],
         self::KEY_STREET_NUMBER => [
             self::KEY_LABEL => self::LABEL_STREET_NUMBER,
             self::KEY_COMPONENT => self::COMPONENT_STREET_NUMBER,
             self::KEY_SORT_ORDER_DEPENDS_ON => self::KEY_STREET_MAIN,
-            self::KEY_SORT_ORDER_POSITION => self::SORT_ORDER_POSITION_AFTER
+            self::KEY_SORT_ORDER_POSITION => self::SORT_ORDER_POSITION_AFTER,
+            self::KEY_AUTOCOMPLETE => 'address-line2'
         ]
     ];
 
+    public const FIELD_DEFAULT_ELEMENT_TEMPLATE = 'Mediarox_CheckoutAddressStreetNumber/form/element/input';
+
     public const FIELD_DEFAULT_DATA = [
         self::KEY_CONFIG => [
-            self::KEY_TEMPLATE => self::FIELD_DEFAULT_TEMPLATE
+            self::KEY_TEMPLATE => self::FIELD_DEFAULT_TEMPLATE,
+            'elementTmpl' => self::FIELD_DEFAULT_ELEMENT_TEMPLATE
         ],
         self::KEY_COMPONENT => self::FIELD_DEFAULT_COMPONENT,
         self::KEY_PROVIDER => self::FIELD_DEFAULT_PROVIDER,

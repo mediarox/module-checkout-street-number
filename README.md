@@ -8,12 +8,6 @@ We use a checkout [LayoutProcessor](https://devdocs.magento.com/guides/v2.4/howd
 Matching knockout components [street-main](https://github.com/mediarox/module-checkout-street-number/blob/main/view/frontend/web/js/form/element/street-main.js) and [street-number](https://github.com/mediarox/module-checkout-street-number/blob/main/view/frontend/web/js/form/element/street-number.js) exist, where [street-main](https://github.com/mediarox/module-checkout-street-number/blob/main/view/frontend/web/js/form/element/street-main.js) contains the logic for updating the original street field.
 CSS is then used to hide the original first street field.
 
-## Installation
-```bash
-composer require mediarox/module-checkout-street-number
-bin/magento setup:upgrade
-```
-
 ## Configuration
 
 ### Backend
@@ -30,9 +24,19 @@ bin/magento config:set checkout/options/split_street_into_name_and_number 1
 ## After
 ![with_extension](https://user-images.githubusercontent.com/32567473/167380518-b9fd92a0-6074-48a9-8ae9-ed9f5f36100a.png)
 
+## Browser Autofill
+
+The module sets HTML `autocomplete` attributes on the generated fields for correct browser autofill behavior:
+
+- **Street field**: `autocomplete="address-line1"`
+- **Street number field**: `autocomplete="address-line2"`
+
+This uses a custom `elementTmpl` (`form/element/input.html`) that extends Magento's default input template with the `autocomplete` attribute binding.
+
 ## Compatible with
 
 * [amasty/module-single-step-checkout](https://amasty.com/one-step-checkout-for-magento-2.html), tested: 3.1.3, 4.0.0
+* [swissup/firecheckout](https://swissuplabs.com/firecheckout.html)
 * [mediarox/module-checkout-placeholder](https://github.com/mediarox/module-checkout-placeholder), tested: 0.4.2
 
 ## Notes
